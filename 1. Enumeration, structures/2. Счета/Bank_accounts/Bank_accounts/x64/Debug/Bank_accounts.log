@@ -1,0 +1,3 @@
+﻿  Bank_accounts.cpp
+C:\Users\ACER\Desktop\Учеба\Homeworks\1. Enumeration, structures\2. Счета\Bank_accounts\Bank_accounts\Bank_accounts.cpp(34,26): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Bank_accounts.vcxproj -> C:\Users\ACER\Desktop\Учеба\Homeworks\1. Enumeration, structures\2. Счета\Bank_accounts\x64\Debug\Bank_accounts.exe
