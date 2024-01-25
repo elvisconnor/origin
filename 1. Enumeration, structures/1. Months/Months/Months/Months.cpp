@@ -17,8 +17,9 @@ enum months
 };
 
 int main(int argc, char** argv) {
-    setlocale(LC_ALL, "rus");
+    setlocale(0, "");
     int choice;
+    months month;
 
     while (true) {
 
@@ -33,7 +34,9 @@ int main(int argc, char** argv) {
             std::cout << "Неправильный номер!\n";
         };
 
-        switch (choice)
+        months season = static_cast<months>(choice);
+
+        switch (season)
         {
         case(months::January):
             std::cout << "Январь\n";

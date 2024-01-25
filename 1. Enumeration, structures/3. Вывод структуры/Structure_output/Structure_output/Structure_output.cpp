@@ -20,7 +20,7 @@ void print_address(address& address)
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");
+    setlocale(0, "");
 
     address ad1 = { "Москва", "Арбат", 12, 8, 123456 };
 
