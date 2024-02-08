@@ -1,8 +1,17 @@
 ﻿#include <iostream>
+#include <string>
 
 class Figure {
+protected:
+    std::string name;
 public:
-    Figure() {};
+    Figure() {
+      this->name = "Фигура";
+    };
+    
+    virtual void print_info() {
+        std::cout << name << ": \n";
+    }
 };
 
 //Треугольник
@@ -19,6 +28,7 @@ public:
         this->A = A;
         this->B = B;
         this->C = C;
+        this->name = "Треугольник";
     };
 
     void get_sides() {
@@ -28,19 +38,20 @@ public:
     void get_angles() {
         std::cout << "Углы: A=" << A << " B=" << B << " C=" << C << "\n";
     };
+
+    void print_info() override {
+        Figure::print_info();
+        get_sides();
+        get_angles();
+        std::cout << "\n";
+    }
 };
 
 //Прямоугольный треугольник
 class RightTriangle : public Triangle {
 public:
-    RightTriangle(int a, int b, int c, int A, int B)
-        : Triangle(a, b, c, A, B, 90) {
-        this->a = a;
-        this->b = b;
-        this->c = c;
-        this->A = A;
-        this->B = B;
-        this->C = 90;
+    RightTriangle(int a, int b, int c, int A, int B) : Triangle(a, b, c, A, B, 90) {
+        this->name = "Прямоугольный треугольник";
     };
 };
 
@@ -48,12 +59,7 @@ public:
 class IsoscelesTriangle : public Triangle {
 public:
     IsoscelesTriangle(int a, int b, int A, int B) : Triangle(a, b, a, A, B, A) {
-        this->a = a;
-        this->b = b;
-        this->c = a;
-        this->A = A;
-        this->B = B;
-        this->C = A;
+        this->name = "Равнобедренный треугольник";
     };
 };
 
@@ -61,12 +67,7 @@ public:
 class Eq_triangle : public Triangle {
 public:
     Eq_triangle(int a) : Triangle(a, a, a, 60, 60, 60) {
-        this->a = a;
-        this->b = a;
-        this->c = a;
-        this->A = 60;
-        this->B = 60;
-        this->C = 60;
+        this->name = "Равносторонний треугольник";
     };
 };
 
@@ -86,6 +87,7 @@ public:
         this->B = B;
         this->C = C;
         this->D = D;
+        this->name = "Четырехугольник";
     };
 
     void get_sides() {
@@ -97,20 +99,20 @@ public:
         std::cout << "Углы: A=" << A << " B=" << B << " C=" << C << " D=" << D
             << "\n";
     };
+
+    void print_info() override {
+        Figure::print_info();
+        get_sides();
+        get_angles();
+        std::cout << "\n";
+    }
 };
 
 //Прямоугольник
 class Rectangle : public Quad {
 public:
     Rectangle(int a, int b, int c, int d) : Quad(a, b, c, d, 90, 90, 90, 90) {
-        this->a = a;
-        this->b = b;
-        this->c = c;
-        this->d = d;
-        this->A = 90;
-        this->B = 90;
-        this->C = 90;
-        this->D = 90;
+        this->name = "Прямоугольник";
     };
 };
 
@@ -118,14 +120,7 @@ public:
 class Square : public Quad {
 public:
     Square(int a) : Quad(a, a, a, a, 90, 90, 90, 90) {
-        this->a = a;
-        this->b = a;
-        this->c = a;
-        this->d = a;
-        this->A = 90;
-        this->B = 90;
-        this->C = 90;
-        this->D = 90;
+        this->name = "Квадрат";
     };
 };
 
@@ -133,14 +128,7 @@ public:
 class Parallelogram : public Quad {
 public:
     Parallelogram(int a, int b, int A, int B) : Quad(a, b, a, b, A, B, A, B) {
-        this->a = a;
-        this->b = b;
-        this->c = a;
-        this->d = b;
-        this->A = A;
-        this->B = B;
-        this->C = A;
-        this->D = B;
+        this->name = "Параллелограмм";
     };
 };
 
@@ -148,16 +136,14 @@ public:
 class Rhombus : public Quad {
 public:
     Rhombus(int a, int A, int B) : Quad(a, a, a, a, A, B, A, B) {
-        this->a = a;
-        this->b = a;
-        this->c = a;
-        this->d = a;
-        this->A = A;
-        this->B = B;
-        this->C = A;
-        this->D = B;
+        this->name = "Ромб";
     };
 };
+
+//Функция вывода информации
+void print(Figure* figure) {
+    figure->print_info();
+}
 
 int main() {
     Triangle trngl(10, 20, 30, 25, 35, 45);
@@ -171,50 +157,15 @@ int main() {
     Parallelogram prlgm1(10, 20, 40, 60);
     Rhombus rmbs1(10, 45, 45);
 
-    std::cout << "Треугольник:\n";
-    trngl.get_sides();
-    trngl.get_angles();
-    std::cout << "\n";
+    Figure** figures = new Figure * [9] {
+        &trngl, & right_trngl, & iso_trngl, & eq_trngl, & quad1, & rctng1, & sqr1, & prlgm1, & rmbs1
+    };
 
-    std::cout << "Прямоугольный треугольник:\n";
-    right_trngl.get_sides();
-    right_trngl.get_angles();
-    std::cout << "\n";
+    for (int i = 0; i < 9; i++) {
+        print(figures[i]);
+    };
 
-    std::cout << "Равнобедренный треугольник:\n";
-    iso_trngl.get_sides();
-    iso_trngl.get_angles();
-    std::cout << "\n";
-
-    std::cout << "Равносторонний треугольник:\n";
-    eq_trngl.get_sides();
-    eq_trngl.get_angles();
-    std::cout << "\n";
-
-    std::cout << "Четырехугольник:\n";
-    quad1.get_sides();
-    quad1.get_angles();
-    std::cout << "\n";
-
-    std::cout << "Прямоугольник:\n";
-    rctng1.get_sides();
-    rctng1.get_angles();
-    std::cout << "\n";
-
-    std::cout << "Квадрат:\n";
-    sqr1.get_sides();
-    sqr1.get_angles();
-    std::cout << "\n";
-
-    std::cout << "Параллелограмм:\n";
-    prlgm1.get_sides();
-    prlgm1.get_angles();
-    std::cout << "\n";
-
-    std::cout << "Ромб\n";
-    rmbs1.get_sides();
-    rmbs1.get_angles();
-    std::cout << "\n";
+    delete[] figures;
 
     return 0;
 }
