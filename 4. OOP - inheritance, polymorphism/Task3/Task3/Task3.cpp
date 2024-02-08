@@ -80,12 +80,6 @@ class RightTriangle : public Triangle {
 public:
     RightTriangle(int a, int b, int c, int A, int B)
         : Triangle(a, b, c, A, B, 90) {
-        this->a = a;
-        this->b = b;
-        this->c = c;
-        this->A = A;
-        this->B = B;
-        this->C = 90;
         this->name = "Прямоугольный треугольник";
     };
 
@@ -103,12 +97,6 @@ public:
 class IsoscelesTriangle : public Triangle {
 public:
     IsoscelesTriangle(int a, int b, int A, int B) : Triangle(a, b, a, A, B, A) {
-        this->a = a;
-        this->b = b;
-        this->c = a;
-        this->A = A;
-        this->B = B;
-        this->C = A;
         this->name = "Равнобедренный треугольник";
     };
 
@@ -126,12 +114,6 @@ public:
 class Eq_triangle : public Triangle {
 public:
     Eq_triangle(int a) : Triangle(a, a, a, 60, 60, 60) {
-        this->a = a;
-        this->b = a;
-        this->c = a;
-        this->A = 60;
-        this->B = 60;
-        this->C = 60;
         this->name = "Равносторонний треугольник";
     };
 
@@ -196,14 +178,6 @@ public:
 class Rectangle : public Quad {
 public:
     Rectangle(int a, int b, int c, int d) : Quad(a, b, c, d, 90, 90, 90, 90) {
-        this->a = a;
-        this->b = b;
-        this->c = c;
-        this->d = d;
-        this->A = 90;
-        this->B = 90;
-        this->C = 90;
-        this->D = 90;
         this->name = "Прямоугольник";
     };
 
@@ -221,14 +195,6 @@ public:
 class Square : public Quad {
 public:
     Square(int a) : Quad(a, a, a, a, 90, 90, 90, 90) {
-        this->a = a;
-        this->b = a;
-        this->c = a;
-        this->d = a;
-        this->A = 90;
-        this->B = 90;
-        this->C = 90;
-        this->D = 90;
         this->name = "Квадрат";
     };
 
@@ -246,14 +212,6 @@ public:
 class Parallelogram : public Quad {
 public:
     Parallelogram(int a, int b, int A, int B) : Quad(a, b, a, b, A, B, A, B) {
-        this->a = a;
-        this->b = b;
-        this->c = a;
-        this->d = b;
-        this->A = A;
-        this->B = B;
-        this->C = A;
-        this->D = B;
         this->name = "Параллелограмм";
     };
 
@@ -271,14 +229,6 @@ public:
 class Rhombus : public Quad {
 public:
     Rhombus(int a, int A, int B) : Quad(a, a, a, a, A, B, A, B) {
-        this->a = a;
-        this->b = a;
-        this->c = a;
-        this->d = a;
-        this->A = A;
-        this->B = B;
-        this->C = A;
-        this->D = B;
         this->name = "Ромб";
     };
 
