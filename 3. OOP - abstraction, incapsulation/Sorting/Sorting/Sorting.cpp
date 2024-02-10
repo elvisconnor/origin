@@ -62,30 +62,28 @@ int main() {
 
     Address* addresses = new Address[address_count];
 
-    while (fin.eof() == false) {
+    for (int i = 0; i < address_count; i++) {
+        std::string city;
+        std::string street;
+        int house;
+        int flat;
+        fin >> city >> street >> house >> flat;
+        addresses[i] = Address(city, street, house, flat);
+    }
 
-        for (int i = 0; i < address_count; i++) {
-            std::string city;
-            std::string street;
-            int house;
-            int flat;
-            fin >> city >> street >> house >> flat;
-            addresses[i] = Address(city, street, house, flat);
+    fout << address_count << "\n";
+
+    sort(addresses, address_count);
+
+    for (int i = 0; i < address_count; i++) {
+        if (i < address_count - 1) {
+            fout << addresses[i].address_output() << "\n";
         }
-
-        fout << address_count << "\n";
-
-        sort(addresses, address_count);
-
-        for (int i = 0; i < address_count - 1; i++) {
-            if (i < address_count - 2) {
-                fout << addresses[i].address_output() << "\n";
-            }
-            else {
-                fout << addresses[i].address_output();
-            }
+        else {
+            fout << addresses[i].address_output();
         }
     }
+
 
     delete[] addresses;
     fin.close();
