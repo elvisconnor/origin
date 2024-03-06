@@ -1,4 +1,17 @@
 ﻿#include <iostream>
+#include <algorithm>
+
+// Нахождение НОД
+int gcd(int a, int b) {
+	int result = std::min(a, b);
+	while (result > 0) {
+		if (a % result == 0 && b % result == 0) {
+			break;
+		}
+		result--;
+	}
+	return result;
+}
 
 class Fraction
 {
@@ -6,11 +19,18 @@ private:
 	int numerator_;
 	int denominator_;
 
+	int friend gcd(int a, int b);
+
 public:
 	Fraction(int numerator, int denominator)
 	{
-		numerator_ = numerator;
-		denominator_ = denominator;
+		if (gcd(numerator, denominator) != 1 && gcd(numerator, denominator) != -1) {
+			numerator_ = numerator / gcd(numerator, denominator);
+			denominator_ = denominator / gcd(numerator, denominator);
+		} else {
+			numerator_ = numerator;
+			denominator_ = denominator;
+		}
 	}
 
 	bool operator==(Fraction other) {
@@ -63,7 +83,7 @@ public:
 int main()
 {
 	Fraction f1(4, 3);
-	Fraction f2(6, 11);
+	Fraction f2(8, 6);
 
 	std::cout << "f1" << ((f1 == f2) ? " == " : " not == ") << "f2" << '\n';
 	std::cout << "f1" << ((f1 != f2) ? " != " : " not != ") << "f2" << '\n';
