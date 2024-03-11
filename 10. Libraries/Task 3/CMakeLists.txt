@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.22.0)
+project(Task3)
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+add_library(LeaverClassLib SHARED Leaver.h Leaver.cpp)
+add_executable(ByeExe main.cpp "Leaver.h" "Leaver.cpp")
+target_link_libraries(ByeExe LeaverClassLib)
