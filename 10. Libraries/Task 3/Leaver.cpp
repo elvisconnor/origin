@@ -4,7 +4,7 @@
 
 namespace DynamicLibrary
 {
-	void Leaver::leave(std::string name) {
-		std::cout << "До свидания, " << name << "!\n";
+	void Leaver::leave(std::string n) {
+		std::cout << "До свидания, " << n << "!\n";
 	}
 }
